@@ -14,7 +14,6 @@ slider.oninput = function() {
 
 slider.onchange = function() {
     changeGridSize(this.value);
-    console.log(this.value);
 }
 
 function changeGridSize(gridSize) {
@@ -34,3 +33,12 @@ function changeGridSize(gridSize) {
         }
     }
 }
+
+function pageLoad() {
+    changeGridSize(16);
+    slider.value = 16;
+    outputVertical.innerText = 16;
+    outputHorizontal.innerText = 16;
+}
+
+pageLoad();
