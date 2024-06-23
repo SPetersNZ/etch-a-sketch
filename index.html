@@ -7,17 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="divParent">
-        <!--divChild elements to go here-->
-    </div>
-    <div class="sizeSlider">
-        <input type="range" min="16" max="100" value="1" class="slider" id="sizeRange">
-    </div>
-    <div class="sizeSliderContainer">
-        <span id="sliderHeading">Grid size:&ensp;</span>
-        <span id="sliderXVertical"></span>
-        <span>&ensp;x&ensp;</span>
-        <span id="sliderYHorizontal"></span>
+    <div id="pageContainer">
+        <div id="buttonContainer">
+            <div id="sliderContainer">
+                <div class="sizeSlider">
+                    <input type="range" min="16" max="96" value="1" class="slider" id="sizeRange">
+                </div>
+                <div class="sizeSliderContainer">
+                    <span id="sliderHeading">Grid size:&ensp;</span>
+                    <span id="sliderXVertical"></span>
+                    <span>&ensp;x&ensp;</span>
+                    <span id="sliderYHorizontal"></span>
+                </div>
+            </div>
+        </div>
+        <div id="divParent">
+            <!--divChild elements to go here-->
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
