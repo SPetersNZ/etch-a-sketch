@@ -62,3 +62,11 @@ button {
     margin-top: 25px;
     height: 27px;
 }
+
+#selectedColor {
+    height: 80px;
+    width: 80px;
+    border: 1px solid black;
+    margin-top: 25px;
+    align-self: center;
+}

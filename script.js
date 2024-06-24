@@ -4,6 +4,7 @@
 //3. click and drag to add color to square
 //4. toggle eraser button to turn off if rainbow mode selected, & vice versa
 //      can a button check go into a function?
+//5. pass buttons to function to check if value is on or off instead of each button checking
 
 const slider = document.getElementById("sizeRange");
 const outputVertical = document.getElementById("sliderXVertical");
@@ -14,6 +15,8 @@ const clearButton = document.getElementById("clearButton")
 const toggleGridButton = document.getElementById("toggleGrid");
 const eraserButton = document.getElementById("eraser");
 const rainbowButton = document.getElementById("rainbowMode")
+const colorModeButton = document.getElementById("colorMode");
+const colorSelector = document.getElementById("selectedColor");
 document.getElementById("sizeRange").step = "16";
 
 function pageLoad(defaultValue) {
@@ -22,6 +25,8 @@ function pageLoad(defaultValue) {
     outputVertical.innerText = defaultValue;
     outputHorizontal.innerText = defaultValue;
     toggleGridButton.style.background = "grey";
+    colorModeButton.style.background = "grey";
+    colorSelector.value = "#000000";
 }
 
 pageLoad(16);
@@ -44,7 +49,7 @@ function squareFill(element) {
     } else if (rainbowButton.value == "on") {
         element.style.backgroundColor = rainbowFill();
     } else {
-        element.style.backgroundColor = "black";
+        element.style.backgroundColor = colorSelector.value;
     }
 }
 
@@ -115,5 +120,15 @@ rainbowButton.addEventListener("click", () => {
     } else {
         rainbowButton.value = "on";
         rainbowButton.style.background = "grey";
+    }
+});
+
+colorModeButton.addEventListener("click", () => {
+    if (colorModeButton.value == "on") {
+        colorModeButton.value = "off";
+        colorModeButton.style.background = "";
+    } else {
+        colorModeButton.value = "on";
+        colorModeButton.style.background = "grey";
     }
 });
