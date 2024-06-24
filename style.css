@@ -49,3 +49,14 @@ div[id^="divChild"] {
     border-bottom-style: solid;
     border-bottom-color: rgba(29, 168, 233, 0.25);
 }
+
+#buttonContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    width: 160px;
+    margin-top: 25px;
+    height: 27px;
+}
