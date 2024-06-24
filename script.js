@@ -12,6 +12,7 @@ function pageLoad(defaultValue) {
     slider.value = defaultValue;
     outputVertical.innerText = defaultValue;
     outputHorizontal.innerText = defaultValue;
+    toggleGridButton.style.background = "grey";
 }
 
 pageLoad(16);
@@ -47,6 +48,9 @@ function changeGridSize(gridSize) {
             divSubChild.addEventListener("mouseout", function (e) {
                 squareFill(e.target);
             });
+            if (toggleGridButton.value == "off") {
+                divSubChild.classList.toggle("noBorder");
+            }
         }
     }
 }
@@ -59,12 +63,23 @@ clearButton.addEventListener("click", () => {
 });
 
 toggleGridButton.addEventListener("click", () => {
+    if (toggleGridButton.value == "on") {
+        toggleGridButton.value = "off";
+        toggleGridButton.style.background = "";
+    } else {
+        toggleGridButton.value = "on";
+        toggleGridButton.style.background = "grey";
+    }
     const divSubChild = document.querySelectorAll(".divSubChild");
     divSubChild.forEach(divSubChild => {
         divSubChild.classList.toggle("noBorder");
     });
 });
 
-//toggleGrid change to stick when changing grid size
+//get toggleGrid change to stick when changing grid size
 
 //implement color picker
+
+//implement gradual color gradient for each hover over square
+
+//click and drag to add color to square
