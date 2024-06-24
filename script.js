@@ -4,6 +4,7 @@ const outputHorizontal = document.getElementById("sliderYHorizontal");
 const divParent = document.getElementById("divParent");
 const divSubChild = document.querySelectorAll(".divSubChild");
 const clearButton = document.getElementById("clearButton")
+const toggleGridButton = document.getElementById("toggleGrid");
 document.getElementById("sizeRange").step = "16";
 
 function pageLoad(defaultValue) {
@@ -56,3 +57,14 @@ clearButton.addEventListener("click", () => {
         divSubChild.style.backgroundColor = "white";
     });
 });
+
+toggleGridButton.addEventListener("click", () => {
+    const divSubChild = document.querySelectorAll(".divSubChild");
+    divSubChild.forEach(divSubChild => {
+        divSubChild.classList.toggle("noBorder");
+    });
+});
+
+//toggleGrid change to stick when changing grid size
+
+//implement color picker
