@@ -1,3 +1,8 @@
+//todo list;
+//1. implement color picker
+//2. implement gradual color gradient for each hover over square
+//3. click and drag to add color to square
+
 const slider = document.getElementById("sizeRange");
 const outputVertical = document.getElementById("sliderXVertical");
 const outputHorizontal = document.getElementById("sliderYHorizontal");
@@ -5,6 +10,7 @@ const divParent = document.getElementById("divParent");
 const divSubChild = document.querySelectorAll(".divSubChild");
 const clearButton = document.getElementById("clearButton")
 const toggleGridButton = document.getElementById("toggleGrid");
+const eraserButton = document.getElementById("eraser");
 document.getElementById("sizeRange").step = "16";
 
 function pageLoad(defaultValue) {
@@ -30,7 +36,11 @@ slider.onchange = function() {
 }
 
 function squareFill(element) {
-    element.style.backgroundColor = "black";
+    if (eraserButton.value == "on") {
+        element.style.backgroundColor = "white";
+    } else {
+        element.style.backgroundColor = "black";
+    }
 }
 
 function changeGridSize(gridSize) {
@@ -76,10 +86,16 @@ toggleGridButton.addEventListener("click", () => {
     });
 });
 
-//get toggleGrid change to stick when changing grid size
-
-//implement color picker
-
-//implement gradual color gradient for each hover over square
-
-//click and drag to add color to square
+eraserButton.addEventListener("click", () => {
+    if (eraserButton.value == "on") {
+        eraserButton.value = "off";
+        eraserButton.style.background = "";
+    } else {
+        eraserButton.value = "on";
+        eraserButton.style.background = "grey";
+    }
+    const divSubChild = document.querySelectorAll(".divSubChild");
+    divSubChild.addEventListener("mouseout", function (e) {
+        squareFill(e.target);
+    });
+});
