@@ -40,7 +40,7 @@ div[id^="divChild"] {
     flex: 1;
 }
 
-#divSubChild {
+.divSubChild {
     flex: 1;
     border-left-width: 1px;
     border-left-style: solid;

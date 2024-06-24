@@ -2,6 +2,7 @@ const slider = document.getElementById("sizeRange");
 const outputVertical = document.getElementById("sliderXVertical");
 const outputHorizontal = document.getElementById("sliderYHorizontal");
 const divParent = document.getElementById("divParent");
+const divSubChild = document.querySelectorAll(".divSubChild");
 document.getElementById("sizeRange").step = "16";
 
 outputVertical.innerText = slider.value;
@@ -16,29 +17,34 @@ slider.onchange = function() {
     changeGridSize(this.value);
 }
 
+function backgroundColor(element) {
+    element.style.backgroundColor = "black";
+}
+
 function changeGridSize(gridSize) {
     while (divParent.hasChildNodes()) {
         divParent.removeChild(divParent.firstChild);
     }
-    for (i = 0; i < gridSize; i++) {
+    for (let i = 0; i < gridSize; i++) {
         const divChild = document.createElement("div");
         divChild.setAttribute("id", "divChild"+[i]);
-        document.getElementById("divParent").appendChild(divChild);
-    }
-    for (i = 0; i < gridSize; i++) {
-        for (j = 0; j < gridSize; j++) {
+        divParent.appendChild(divChild);
+        for (let j = 0; j < gridSize; j++) {
             const divSubChild = document.createElement("div");
-            divSubChild.setAttribute("id", "divSubChild");
-            document.getElementById("divChild"+[i]).appendChild(divSubChild);
+            divSubChild.setAttribute("class", "divSubChild");
+            divChild.appendChild(divSubChild);
+            divSubChild.addEventListener("mouseout", function (e) {
+                backgroundColor(e.target);
+            });
         }
     }
 }
 
-function pageLoad() {
-    changeGridSize(16);
-    slider.value = 16;
-    outputVertical.innerText = 16;
-    outputHorizontal.innerText = 16;
+function pageLoad(defaultValue) {
+    changeGridSize(defaultValue);
+    slider.value = defaultValue;
+    outputVertical.innerText = defaultValue;
+    outputHorizontal.innerText = defaultValue;
 }
 
-pageLoad();
+pageLoad(16);
