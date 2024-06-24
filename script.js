@@ -2,6 +2,8 @@
 //1. implement color picker
 //2. implement gradual color gradient for each hover over square
 //3. click and drag to add color to square
+//4. toggle eraser button to turn off if rainbow mode selected, & vice versa
+//      can a button check go into a function?
 
 const slider = document.getElementById("sizeRange");
 const outputVertical = document.getElementById("sliderXVertical");
@@ -11,6 +13,7 @@ const divSubChild = document.querySelectorAll(".divSubChild");
 const clearButton = document.getElementById("clearButton")
 const toggleGridButton = document.getElementById("toggleGrid");
 const eraserButton = document.getElementById("eraser");
+const rainbowButton = document.getElementById("rainbowMode")
 document.getElementById("sizeRange").step = "16";
 
 function pageLoad(defaultValue) {
@@ -38,9 +41,18 @@ slider.onchange = function() {
 function squareFill(element) {
     if (eraserButton.value == "on") {
         element.style.backgroundColor = "white";
+    } else if (rainbowButton.value == "on") {
+        element.style.backgroundColor = rainbowFill();
     } else {
         element.style.backgroundColor = "black";
     }
+}
+
+function rainbowFill() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + "," + g + "," + b + ")";
 }
 
 function changeGridSize(gridSize) {
@@ -94,8 +106,14 @@ eraserButton.addEventListener("click", () => {
         eraserButton.value = "on";
         eraserButton.style.background = "grey";
     }
-    const divSubChild = document.querySelectorAll(".divSubChild");
-    divSubChild.addEventListener("mouseout", function (e) {
-        squareFill(e.target);
-    });
+});
+
+rainbowButton.addEventListener("click", () => {
+    if (rainbowButton.value == "on") {
+        rainbowButton.value = "off";
+        rainbowButton.style.background = "";
+    } else {
+        rainbowButton.value = "on";
+        rainbowButton.style.background = "grey";
+    }
 });
