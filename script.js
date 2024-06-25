@@ -38,7 +38,8 @@ slider.onchange = function() {
 function squareFill(element) {
     var newOpacity = increaseOpacity(element);
     if (eraserButton.value == "on") {
-        element.style.backgroundColor = "white";
+        element.style.backgroundColor = "rgba(255, 255, 255)";
+        element.style.opacity = 1.0;
     } else if (rainbowButton.value == "on") {
         element.style.backgroundColor = rainbowFill();
         element.style.opacity = newOpacity
