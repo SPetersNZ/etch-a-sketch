@@ -1,11 +1,3 @@
-//todo list;
-//1. implement color picker
-//2. implement gradual color gradient for each hover over square
-//3. click and drag to add color to square
-//4. toggle eraser button to turn off if rainbow mode selected, & vice versa
-//      can a button check go into a function?
-//5. pass buttons to function to check if value is on or off instead of each button checking
-
 const slider = document.getElementById("sizeRange");
 const outputVertical = document.getElementById("sliderXVertical");
 const outputHorizontal = document.getElementById("sliderYHorizontal");
@@ -48,8 +40,10 @@ function squareFill(element) {
         element.style.backgroundColor = "white";
     } else if (rainbowButton.value == "on") {
         element.style.backgroundColor = rainbowFill();
-    } else {
+    } else if (colorModeButton.value == "on") {
         element.style.backgroundColor = colorSelector.value;
+    } else {
+        //do nothing
     }
 }
 
@@ -90,13 +84,7 @@ clearButton.addEventListener("click", () => {
 });
 
 toggleGridButton.addEventListener("click", () => {
-    if (toggleGridButton.value == "on") {
-        toggleGridButton.value = "off";
-        toggleGridButton.style.background = "";
-    } else {
-        toggleGridButton.value = "on";
-        toggleGridButton.style.background = "grey";
-    }
+    buttonValueCheck(toggleGridButton);
     const divSubChild = document.querySelectorAll(".divSubChild");
     divSubChild.forEach(divSubChild => {
         divSubChild.classList.toggle("noBorder");
@@ -104,31 +92,43 @@ toggleGridButton.addEventListener("click", () => {
 });
 
 eraserButton.addEventListener("click", () => {
-    if (eraserButton.value == "on") {
-        eraserButton.value = "off";
-        eraserButton.style.background = "";
-    } else {
-        eraserButton.value = "on";
-        eraserButton.style.background = "grey";
-    }
+    buttonValueCheck(eraserButton);
 });
 
 rainbowButton.addEventListener("click", () => {
-    if (rainbowButton.value == "on") {
-        rainbowButton.value = "off";
-        rainbowButton.style.background = "";
-    } else {
-        rainbowButton.value = "on";
-        rainbowButton.style.background = "grey";
-    }
+    buttonValueCheck(rainbowButton);
 });
 
 colorModeButton.addEventListener("click", () => {
-    if (colorModeButton.value == "on") {
+    buttonValueCheck(colorModeButton);
+});
+
+function buttonValueCheck(element) {
+    if (element.value == "on") {
+        element.value = "off";
+        element.style.background = "";
+    } else {
+        element.value = "on";
+        element.style.background = "grey";
+    }
+    singleOptionSelect(element);
+}
+
+function singleOptionSelect(element) {
+    if (element == eraserButton && eraserButton.value == "on") {
+        rainbowButton.value = "off";
+        rainbowButton.style.background = "";
+        colorModeButton.value = "off";
+        colorModeButton.style.background = "";
+    } else if (element == rainbowButton && rainbowButton.value == "on") {
+        eraserButton.value = "off";
+        eraserButton.style.background = "";
         colorModeButton.value = "off";
         colorModeButton.style.background = "";
     } else {
-        colorModeButton.value = "on";
-        colorModeButton.style.background = "grey";
+        eraserButton.value = "off";
+        eraserButton.style.background = "";
+        rainbowButton.value = "off";
+        rainbowButton.style.background = "";
     }
-});
+}
