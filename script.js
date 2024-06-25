@@ -69,8 +69,11 @@ function changeGridSize(gridSize) {
             const divSubChild = document.createElement("div");
             divSubChild.setAttribute("class", "divSubChild");
             divChild.appendChild(divSubChild);
-            divSubChild.addEventListener("mouseout", function (e) {
-                squareFill(e.target);
+            divParent.addEventListener("mousedown", () => {
+                divSubChild.addEventListener("mouseenter", mouseHandler);
+            });
+            window.addEventListener("mouseup", () => {
+                divSubChild.removeEventListener("mouseenter", mouseHandler);
             });
             divSubChild.style.backgroundColor = "rgb(255, 255, 255)";
             if (toggleGridButton.value == "off") {
@@ -78,6 +81,10 @@ function changeGridSize(gridSize) {
             }
         }
     }
+}
+
+function mouseHandler(e) {
+    squareFill(e.target)
 }
 
 clearButton.addEventListener("click", () => {
