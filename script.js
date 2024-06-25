@@ -91,7 +91,8 @@ function mouseHandler(e) {
 clearButton.addEventListener("click", () => {
     const divSubChild = document.querySelectorAll(".divSubChild");
     divSubChild.forEach(divSubChild => {
-        divSubChild.style.backgroundColor = "white";
+        divSubChild.style.backgroundColor = "rgba(255, 255, 255)";
+        divSubChild.style.opacity = 1.0;
     });
 });
 
