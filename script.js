@@ -36,14 +36,17 @@ slider.onchange = function() {
 }
 
 function squareFill(element) {
+    var newOpacity = increaseOpacity(element);
     if (eraserButton.value == "on") {
         element.style.backgroundColor = "white";
     } else if (rainbowButton.value == "on") {
         element.style.backgroundColor = rainbowFill();
+        element.style.opacity = newOpacity
     } else if (colorModeButton.value == "on") {
         element.style.backgroundColor = colorSelector.value;
+        element.style.opacity = newOpacity;
     } else {
-        //do nothing
+        // do nothing
     }
 }
 
@@ -69,6 +72,7 @@ function changeGridSize(gridSize) {
             divSubChild.addEventListener("mouseout", function (e) {
                 squareFill(e.target);
             });
+            divSubChild.style.backgroundColor = "rgb(255, 255, 255)";
             if (toggleGridButton.value == "off") {
                 divSubChild.classList.toggle("noBorder");
             }
@@ -131,6 +135,21 @@ function singleOptionSelect(element) {
         rainbowButton.value = "off";
         rainbowButton.style.background = "";
     } else {
-        //do nothing
+        // do nothing
     }
+}
+
+function increaseOpacity(element) {
+    var newOpacity = 0;
+    var increment = 0.1;
+    currentOpacity = window.getComputedStyle(element).opacity;
+    if (element.style.backgroundColor == "rgb(255, 255, 255)") {
+        newOpacity = increment;
+    } else if (currentOpacity < 1) {
+        currentOpacity = Number(currentOpacity);
+        newOpacity = currentOpacity + increment;
+    } else if (currentOpacity >= 1) {
+        newOpacity = 1;
+    }
+    return newOpacity;
 }
