@@ -125,10 +125,12 @@ function singleOptionSelect(element) {
         eraserButton.style.background = "";
         colorModeButton.value = "off";
         colorModeButton.style.background = "";
-    } else {
+    } else if (element == colorModeButton && colorModeButton.value == "on") {
         eraserButton.value = "off";
         eraserButton.style.background = "";
         rainbowButton.value = "off";
         rainbowButton.style.background = "";
+    } else {
+        //do nothing
     }
 }
